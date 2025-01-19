@@ -6,7 +6,7 @@
 #include <chrono>
 
 Client::Client(const std::string& ip, unsigned short port) 
-    : window(sf::VideoMode(800, 600), "MSN Chat - Prototype"), running(true) {
+    : window(sf::VideoMode(800, 600), "MSN Chat - Enhanced"), running(true) {
     if (socket.connect(ip, port) != sf::Socket::Done) {
         throw std::runtime_error("Erreur : impossible de se connecter au serveur.");
     }
@@ -17,38 +17,57 @@ Client::Client(const std::string& ip, unsigned short port)
         throw std::runtime_error("Erreur : impossible de charger la police.");
     }
 
-    // Configuration des zones de chat et saisie
-    chatBox.setSize(sf::Vector2f(780, 400));
-    chatBox.setPosition(10, 10);
-    chatBox.setFillColor(sf::Color(240, 240, 240));
-    chatBox.setOutlineColor(sf::Color::Black);
-    chatBox.setOutlineThickness(2);
+    // Barre de titre
+    titleBar.setSize(sf::Vector2f(800, 50));
+    titleBar.setFillColor(sf::Color(50, 100, 200));
+    titleBar.setPosition(0, 0);
 
-    inputBox.setSize(sf::Vector2f(780, 50));
+    titleText.setFont(font);
+    titleText.setString("MSN Chat - Connected");
+    titleText.setCharacterSize(24);
+    titleText.setFillColor(sf::Color::White);
+    titleText.setPosition(20, 10);
+
+    // Zone de chat
+    chatBox.setSize(sf::Vector2f(780, 400));
+    chatBox.setPosition(10, 60);
+    chatBox.setFillColor(sf::Color(245, 245, 245));
+    chatBox.setOutlineColor(sf::Color(180, 180, 180));
+    chatBox.setOutlineThickness(2);
+ 
+
+    chatHistory.setFont(font);
+    chatHistory.setCharacterSize(16);
+    chatHistory.setPosition(20, 70);
+    chatHistory.setFillColor(sf::Color::Black);
+
+    // Zone de saisie
+    inputBox.setSize(sf::Vector2f(680, 50));
     inputBox.setPosition(10, 500);
     inputBox.setFillColor(sf::Color(255, 255, 255));
-    inputBox.setOutlineColor(sf::Color::Black);
+    inputBox.setOutlineColor(sf::Color(200, 200, 200));
     inputBox.setOutlineThickness(2);
+    
 
     inputText.setFont(font);
     inputText.setCharacterSize(20);
     inputText.setPosition(20, 510);
     inputText.setFillColor(sf::Color::Black);
 
-    chatHistory.setFont(font);
-    chatHistory.setCharacterSize(16);
-    chatHistory.setPosition(20, 20);
-    chatHistory.setFillColor(sf::Color::Black);
-
     // Bouton Wizz
-    wizzButton.setSize(sf::Vector2f(100, 30));
-    wizzButton.setFillColor(sf::Color(255, 200, 0));
-    wizzButton.setPosition(690, 560);
+    wizzButton.setSize(sf::Vector2f(100, 50));
+    wizzButton.setPosition(700, 500);
+    wizzButton.setFillColor(sf::Color(255, 150, 0));
+    wizzButton.setOutlineColor(sf::Color(200, 100, 0));
+    wizzButton.setOutlineThickness(2);
+   
 
     // Avatar
-    avatar.setRadius(20);
+    avatar.setRadius(30);
     avatar.setFillColor(sf::Color::Blue);
-    avatar.setPosition(10, 460);
+    avatar.setOutlineColor(sf::Color::White);
+    avatar.setOutlineThickness(3);
+    avatar.setPosition(700, 60);
 }
 
 void Client::run() {
@@ -92,8 +111,7 @@ void Client::run() {
             }
         }
 
-        // Mettre à jour les textes
-        inputText.setString(currentInput);
+        inputText.setString("Message: " + currentInput);
 
         std::string history;
         {
@@ -105,7 +123,9 @@ void Client::run() {
         chatHistory.setString(history);
 
         // Affichage
-        window.clear(sf::Color(200, 220, 255)); // Arrière-plan MSN-like
+        window.clear(sf::Color(230, 230, 255)); // Arrière-plan clair
+        window.draw(titleBar);
+        window.draw(titleText);
         window.draw(chatBox);
         window.draw(chatHistory);
         window.draw(inputBox);
@@ -126,7 +146,6 @@ void Client::listenToServer() {
         if (message == "/wizz") {
             std::cout << "Vous avez reçu un Wizz !" << std::endl;
 
-            // Effet de secousse
             for (int i = 0; i < 10; ++i) {
                 window.setPosition(sf::Vector2i(200 + (i % 2 == 0 ? 10 : -10), 200));
                 std::this_thread::sleep_for(std::chrono::milliseconds(50));
