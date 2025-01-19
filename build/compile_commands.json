@@ -1,0 +1,26 @@
+[
+{
+  "directory": "C:/Users/kamil/projets/CPPRT/build",
+  "command": "C:\\Users\\kamil\\winlibs-x86_64-posix-seh-gcc-13.1.0-mingw-w64msvcrt-11.0.0-r5\\mingw64\\bin\\g++.exe  @CMakeFiles/server.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\server.dir\\server\\src\\server.cpp.obj -c C:\\Users\\kamil\\projets\\CPPRT\\server\\src\\server.cpp",
+  "file": "C:/Users/kamil/projets/CPPRT/server/src/server.cpp",
+  "output": "CMakeFiles/server.dir/server/src/server.cpp.obj"
+},
+{
+  "directory": "C:/Users/kamil/projets/CPPRT/build",
+  "command": "C:\\Users\\kamil\\winlibs-x86_64-posix-seh-gcc-13.1.0-mingw-w64msvcrt-11.0.0-r5\\mingw64\\bin\\g++.exe  @CMakeFiles/server.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\server.dir\\server\\src\\main_server.cpp.obj -c C:\\Users\\kamil\\projets\\CPPRT\\server\\src\\main_server.cpp",
+  "file": "C:/Users/kamil/projets/CPPRT/server/src/main_server.cpp",
+  "output": "CMakeFiles/server.dir/server/src/main_server.cpp.obj"
+},
+{
+  "directory": "C:/Users/kamil/projets/CPPRT/build",
+  "command": "C:\\Users\\kamil\\winlibs-x86_64-posix-seh-gcc-13.1.0-mingw-w64msvcrt-11.0.0-r5\\mingw64\\bin\\g++.exe  @CMakeFiles/client.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\client.dir\\client\\src\\client.cpp.obj -c C:\\Users\\kamil\\projets\\CPPRT\\client\\src\\client.cpp",
+  "file": "C:/Users/kamil/projets/CPPRT/client/src/client.cpp",
+  "output": "CMakeFiles/client.dir/client/src/client.cpp.obj"
+},
+{
+  "directory": "C:/Users/kamil/projets/CPPRT/build",
+  "command": "C:\\Users\\kamil\\winlibs-x86_64-posix-seh-gcc-13.1.0-mingw-w64msvcrt-11.0.0-r5\\mingw64\\bin\\g++.exe  @CMakeFiles/client.dir/includes_CXX.rsp -g -std=gnu++17 -o CMakeFiles\\client.dir\\client\\src\\main_client.cpp.obj -c C:\\Users\\kamil\\projets\\CPPRT\\client\\src\\main_client.cpp",
+  "file": "C:/Users/kamil/projets/CPPRT/client/src/main_client.cpp",
+  "output": "CMakeFiles/client.dir/client/src/main_client.cpp.obj"
+}
+]

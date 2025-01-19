@@ -1,0 +1,4 @@
+C:/Users/kamil/projets/CPPRT/build/CMakeFiles/server.dir
+C:/Users/kamil/projets/CPPRT/build/CMakeFiles/client.dir
+C:/Users/kamil/projets/CPPRT/build/CMakeFiles/edit_cache.dir
+C:/Users/kamil/projets/CPPRT/build/CMakeFiles/rebuild_cache.dir
