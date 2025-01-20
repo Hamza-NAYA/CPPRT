@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <thread>
-#include <cstdlib> // Pour system()
+#include <cstdlib> // Pour std::system
 #include "../include/server.hpp"
 
 void launchClient(const std::string& clientPath) {
@@ -23,18 +23,7 @@ int main() {
             server.run();
         });
 
-        // Pause pour s'assurer que le serveur démarre
-        std::this_thread::sleep_for(std::chrono::seconds(1));
-        std::cout << "Lancement des clients..." << std::endl;
-
-        // Lancer deux clients automatiquement en parallèle
-        const std::string clientPath = "C:/Users/kamil/projets/CPPRT/build/client.exe";
-        std::thread client1(launchClient, clientPath);
-        std::thread client2(launchClient, clientPath);
-
-        // Détacher les threads des clients pour qu'ils fonctionnent indépendamment
-        client1.detach();
-        client2.detach();
+        std::cout << "Appuyez sur 'C' pour lancer un client ou fermez la fenêtre pour arrêter le serveur." << std::endl;
 
         // Boucle principale pour la fenêtre graphique du serveur
         while (window.isOpen()) {
@@ -43,6 +32,14 @@ int main() {
                 // Fermer la fenêtre si l'utilisateur clique sur le bouton de fermeture
                 if (event.type == sf::Event::Closed) {
                     window.close();
+                }
+
+                // Si l'utilisateur appuie sur 'C', lancer un client
+                if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::C) {
+                    const std::string clientPath = "C:/Users/kamil/projets/CPPRT/build/client.exe";
+                    std::cout << "Lancement d'un client..." << std::endl;
+                    std::thread clientThread(launchClient, clientPath);
+                    clientThread.detach(); // Laisse le client fonctionner indépendamment
                 }
             }
 
