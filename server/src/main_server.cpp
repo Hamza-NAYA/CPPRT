@@ -5,9 +5,11 @@
 #include "../include/server.hpp"
 
 void launchClient(const std::string& clientPath) {
-    // Lancer une instance du client
-    std::string command = "start \"\" \"" + clientPath + "\"";
-    system(command.c_str());
+    // Lancer une instance du client sans ouvrir un nouveau terminal
+    std::string command = "\"" + clientPath + "\"";
+    if (std::system(command.c_str()) != 0) {
+        std::cerr << "Erreur : Impossible de lancer le client." << std::endl;
+    }
 }
 
 int main() {
